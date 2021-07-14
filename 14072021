@@ -1,0 +1,45 @@
+using System;
+
+namespace TestApp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string res = "";
+            Console.WriteLine("Input not more than 300 charatcers long text");
+            var str = Console.ReadLine();
+
+            //Truncate text if it is more than 300 characters
+            if(str.Length > 300)
+            {
+                Console.WriteLine("Your text is more than 300 characters and will be truncated");
+                str = str.Substring(0, 300);
+            }
+            //Reverse string if it is gretaer or equals to 3 characters
+            if (str.Length >= 3)
+            {
+                var charArray = str.ToCharArray();
+                Array.Reverse(charArray);
+                var newstr = "";
+                for (var i = 0; i <= charArray.Length - 1; i++)
+                {
+                    newstr += charArray[i];
+                    if (newstr.Length == 3)
+                    {
+                        res += newstr.ToUpper();
+                        newstr = "";
+                    }
+                    if ((newstr.Length == 1 || newstr.Length == 2) && i == charArray.Length -1)
+                        res += newstr.ToLower();
+                }
+                //res = new string(charArray);
+            }
+            else
+                res = str;
+
+            Console.WriteLine(res);
+            Console.ReadLine();
+        }
+    }
+}
